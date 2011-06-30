@@ -2,7 +2,7 @@
 module MmDirtier
   module Plugins
     module Dirtier
-
+      extend ActiveSupport::Concern
       # def self.included(model)
       #   model.plugin MongoMapper::Plugins::Dirty unless
       #     model.plugins.include?(MongoMapper::Plugins::Dirty)
