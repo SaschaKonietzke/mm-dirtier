@@ -42,7 +42,7 @@ class OneEmbeddedProxyTest < Test::Unit::TestCase
 
     should "detect when a child is set to nil" do
       doc = @document.new
-      c = doc.child.build
+      c = doc.build_child
       doc.save!
       doc.child = nil
       doc.child_changed?.should be_true
@@ -53,7 +53,7 @@ class OneEmbeddedProxyTest < Test::Unit::TestCase
 
     should "remove changes when set back to its original value" do
       doc = @document.new
-      child = doc.child.build
+      child = doc.build_child
       doc.save!
       doc.child = @child.new
       doc.child_changed?.should be_true
@@ -63,7 +63,7 @@ class OneEmbeddedProxyTest < Test::Unit::TestCase
 
     should "ignore in place changes to child attributes" do
       doc = @document.new
-      child = doc.child.build
+      child = doc.build_child
       doc.save!
       doc.child.name = "hi there"
       doc.child_changed?.should be_false
@@ -71,8 +71,8 @@ class OneEmbeddedProxyTest < Test::Unit::TestCase
 
     should "detect deletion on a nested embedded one" do
       doc = @document.new
-      child = doc.child.build
-      grandchild = child.grandchild.build
+      child = doc.build_child
+      grandchild = child.build_grandchild
       doc.save!
       child.name = "tada"
       child.grandchild = nil
